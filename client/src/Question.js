@@ -22,6 +22,9 @@ export default class Question extends Component {
                                     <button className="button is-small" onClick={
                                         () => this.props.handleVoteDown(question._id, ans._id)}>Vote Down
                                     </button>
+                                    <button className="button is-small" onClick={
+                                        () => this.props.onDeleteAnswer(question._id, ans._id)}>Delete
+                                    </button>
                                     <span className="is-outlined">  {ans.votes}</span>
                                 </div>
 

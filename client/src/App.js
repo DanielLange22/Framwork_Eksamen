@@ -18,7 +18,7 @@ import {
     voteAnswerUp,
     hideAlert,
     voteAnswerDown,
-    createLogin, updateLogin, deleteQuestion
+    createLogin, updateLogin, deleteQuestion, deleteAnswer
 } from './actions';
 import CreateLogin from "./CreateLogin";
 import UpdatePassword from "./UpdatePassword";
@@ -112,6 +112,7 @@ class App extends Component {
                             getQuestion={(id) => this.props.questions.find(e => e._id === id)}
                             handleVote={(id, aid) => this.props.voteAnswerUp(id, aid)}
                             handleVoteDown={(id, aid) => this.props.voteAnswerDown(id, aid)}
+                            onDeleteAnswer={(id, id_answer) => this.props.deleteAnswer(id, id_answer)}
                             onPostAnswer={(id, text) => this.props.postAnswer(id, text)}
                         />
 
@@ -158,6 +159,7 @@ const mapDispatchToProps = dispatch => ({
     postQuestion: text => dispatch(postQuestion(text)),
     deleteQuestion: (id) => dispatch(deleteQuestion(id)),
     postAnswer: (id, text) => dispatch(postAnswer(id, text)),
+    deleteAnswer: (id, answer_id) => dispatch(deleteAnswer(id, answer_id)),
     login: (username, password) => dispatch(login(username, password)),
     logout: _ => dispatch(logout()),
     createLogin: (username, password) => dispatch(createLogin(username, password)),

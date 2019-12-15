@@ -44,6 +44,10 @@ module.exports = (dal, io) => {
         dal.addAnswer(req.params.id, req.body.text).then(updatedQuestion => res.json(updatedQuestion));
     });
 
+    router.delete('/:id/answers', (req, res) => {
+        dal.deleteAnswer(req.params.id, req.body.id).then(updatedQuestion => res.json(updatedQuestion));
+    });
+
     router.put('/:id/answers/:aid/vote', (req, res) => {
         let id = req.params.id;
         let aid = req.params.aid;

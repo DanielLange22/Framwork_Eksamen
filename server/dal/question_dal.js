@@ -45,6 +45,18 @@ class QuestionDAL {
         return question.save();
     }
 
+    async removeAnswer(questionId, answerID) {
+        const question = await this.getQuestion(questionId);
+        question.answers.pull({_id: answerID});
+        return question.save();
+    }
+
+    async deleteAnswer(questionId, answerID) {
+        var ObjectId = require('mongodb').ObjectID;
+        const question = await this.removeAnswer(questionId, answerID);
+        return question.save();
+    }
+
     async upvoteAnswer(questionId, answerId) {
         const question = await this.getQuestion(questionId);
         const answer = question.answers.id(answerId);

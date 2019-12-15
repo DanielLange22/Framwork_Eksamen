@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a52c9f04-6d77-42e5-b842-d37fcc3dc675" name="Default Changelist" comment="" />
+    <list default="true" id="a52c9f04-6d77-42e5-b842-d37fcc3dc675" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Question.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Question.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/actions/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dal/question_dal.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dal/question_dal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routers/question_router.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routers/question_router.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +22,9 @@
         <option value="JavaScript File" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1UWYDG6P6XNLpepCxdzfFWJgVf0" />
   <component name="PropertiesComponent">
@@ -46,12 +57,16 @@
       </envs>
       <method v="2" />
     </configuration>
+    <configuration name="question_dal.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/server/dal/question_dal.js" working-dir="$PROJECT_DIR$/server/dal">
+      <method v="2" />
+    </configuration>
     <configuration name="user_router.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/server/routers/user_router.js" working-dir="$PROJECT_DIR$/server/routers">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Node.js.app.js" />
+        <item itemvalue="Node.js.question_dal.js" />
         <item itemvalue="Node.js.user_router.js" />
       </list>
     </recent_temporary>
@@ -85,10 +100,28 @@
       <workItem from="1576160384502" duration="1791000" />
       <workItem from="1576162195572" duration="1776000" />
       <workItem from="1576233799169" duration="1025000" />
+      <workItem from="1576235483054" duration="108000" />
+      <workItem from="1576412838762" duration="631000" />
+      <workItem from="1576416765031" duration="1538000" />
+      <workItem from="1576418613047" duration="1729000" />
+      <workItem from="1576420427788" duration="1634000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

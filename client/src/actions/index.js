@@ -61,6 +61,8 @@ export const replaceQuestions = questions => ({
     questions: questions
 });
 
+//Evt. Skal der tilføjes således den har en TYPE af REMOVE_QUESTIONS - ELLERS RET OVENSTÅENDE TIL UPDATE SÅ DEN KAN HÅNDTERE BEGGE
+
 export const loadQuestions = _ => async function (dispatch) {
     try {
         const url = `${API_URL}/questions`;
@@ -126,6 +128,27 @@ export const postAnswer = (id, text) => async function(dispatch) {
 
         if (response.status === 401) {
             dispatch(showAndHideAlert("Login", "You need to login to post answers!", "alert"));
+            await navigate("/login");
+        } else {
+            await response.json();
+            dispatch(loadQuestions());
+        }
+    } catch (e) {
+        dispatch(showAndHideAlert("Give answer error", e.message, "error"));
+        console.error(e);
+    }
+};
+
+export const deleteAnswer = (id, answer_id) => async function(dispatch) {
+    //if (text === "") return;
+    try {
+        const response = await Auth.fetch(`${API_URL}/questions/${id}/answers`, {
+            method: "DELETE",
+            body: JSON.stringify({id: answer_id})
+        });
+
+        if (response.status === 401) {
+            dispatch(showAndHideAlert("Login", "You need to login to delete answers!", "alert"));
             await navigate("/login");
         } else {
             await response.json();
