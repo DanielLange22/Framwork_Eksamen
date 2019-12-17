@@ -124,6 +124,7 @@ class App extends Component {
                                category={this.props.category}
                                infoMsg={this.state.infoMsg}
                                onPostAnswer={(category_id, title, author, category, price, name_seller, email_seller) => this.props.postBook(category_id, title, author, category, price, name_seller, email_seller)}
+                               loggedin={this.props.user.username}
                         />
 
                         <Book path="/category/:id_cat/books/:id_book"

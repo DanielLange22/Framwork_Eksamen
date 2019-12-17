@@ -75,6 +75,7 @@ mongoose.connect(MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true})
         app.get('*', (req, res) =>
             res.sendFile(path.resolve('..', 'client', 'build', 'index.html'))
         );
+
     })
     .catch(error => { console.error(error) })
 
