@@ -53,7 +53,6 @@ export default class PostANewBook extends Component {
     selectSubmit = e => {
         const { value } = e.target;
         this.setState({category: value})
-        alert(value);
     };
 
     render() {
