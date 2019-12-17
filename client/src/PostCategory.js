@@ -6,7 +6,7 @@ export default class PostCategory extends Component {
         super(props);
 
         this.state = {
-            question: ""
+            category: ""
         };
         this.handleInput = this.handleInput.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -14,13 +14,13 @@ export default class PostCategory extends Component {
 
     handleInput(event) {
         event.preventDefault();
-        this.props.onPostCategory(this.state.question);
-        this.setState({question: ""})
+        this.props.onPostCategory(this.state.category);
+        this.setState({category: ""})
     }
 
     onChange(event) {
         this.setState({
-            question: event.target.value
+            category: event.target.value
         });
     }
 
@@ -28,15 +28,15 @@ export default class PostCategory extends Component {
         return (
             <form>
                 <div className="field">
-                    <label className="label" htmlFor="QuestionInput">Your question</label>
-                    <textarea className="textarea" onChange={this.onChange} name="question"
-                           value={this.state.question}
-                           placeholder="Question"
-                           id="QuestionInput"/>
+                    <label className="label" htmlFor="CategoryInput">Your category</label>
+                    <textarea className="textarea" onChange={this.onChange} name="category"
+                           value={this.state.category}
+                           placeholder="Category"
+                           id="CategroyInput"/>
                 </div>
                 <div className="field">
                     <button className="button is-primary" onClick={this.handleInput} type="submit"
-                            id="QuestionButton">Post Category
+                            id="CategoryButton">Post Category
                     </button>
                 </div>
             </form>

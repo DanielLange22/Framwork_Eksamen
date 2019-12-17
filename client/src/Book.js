@@ -16,7 +16,7 @@ export default class Book extends Component {
         if(Book) {
             bookContent =
                 <div>
-                    <h1>Book info</h1>
+                    <p>Book info</p>
                     <p>Title</p>
                     <label>{Book.title}</label>
                     <p>Author</p>
@@ -34,7 +34,7 @@ export default class Book extends Component {
 
         return (
             <section className="section has-background-white-bis">
-            {bookContent}
+                {bookContent}
             </section>
         )
     };

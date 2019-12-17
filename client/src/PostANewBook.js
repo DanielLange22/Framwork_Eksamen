@@ -77,8 +77,8 @@ export default class PostANewBook extends Component {
                 <p>Enter the category</p>
                 <select onChange={this.selectSubmit}>
                     <option key={0} value={0}>Pick a Category</option>)}
-                    {this.props.category.map(question =>
-                    <option key={question._id} value={question._id}>{question.text}</option>)}
+                    {this.props.category.map(category =>
+                    <option key={category._id} value={category._id}>{category.text}</option>)}
                 </select>
                 <p>Enter the price</p>
                 <input

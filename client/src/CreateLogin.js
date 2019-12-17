@@ -48,11 +48,13 @@ export default class CreateLogin extends Component {
                     value={this.state.password}
                     onChange={this.onChangedValue}
                 />
+                <p>Admin bruger</p>
                 <input
                     type="checkbox"
                     onClick={this.onClick}
                     value={!this.state.admin}>
                 </input>
+                <p></p>
                 <button
                     type="button"
                     onClick={this.handleInput}

@@ -56,20 +56,19 @@ export const logout = _ => async function (dispatch) {
 
 
 /******************************************************
-  Actions for handling questions and answers.
+  Actions for handling category and books.
  ******************************************************/
 export const replaceCategory = category => ({
     type: 'UPDATE',
     category: category
 });
 
-//Evt. Skal der tilføjes således den har en TYPE af REMOVE_QUESTIONS - ELLERS RET OVENSTÅENDE TIL UPDATE SÅ DEN KAN HÅNDTERE BEGGE
-
 export const loadCategory = _ => async function (dispatch) {
     try {
         const url = `${API_URL}/category`;
         const response = await Auth.fetch(url);
         const data = await response.json();
+
         dispatch(replaceCategory(data));
     } catch (e) {
         console.error(e);
@@ -80,10 +79,10 @@ export const loadCategory = _ => async function (dispatch) {
 export const postCategory = text => async function(dispatch) {
     if (text === "") return;
     try {
-        const newQuestion = { text: text };
+        const newCategory = { text: text };
         const response = await Auth.fetch(`${API_URL}/category`, {
             method: "POST",
-            body: JSON.stringify(newQuestion)
+            body: JSON.stringify(newCategory)
         });
         if (response.status === 401) {
             dispatch(showAndHideAlert("Login", "You need to login to post a Category!", "alert"));
