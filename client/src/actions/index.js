@@ -88,6 +88,7 @@ export const postCategory = text => async function(dispatch) {
             dispatch(showAndHideAlert("Login", "You need to login to post a Category! " + json.msg !== undefined ? ("And:" + json.msg) : "", "alert"));
         } else {
             await response.json();
+            dispatch(showAndHideAlert("PostCategory", "You have posted a new category", "alert"));
             dispatch(loadCategory());
         }
     } catch (e) {
@@ -97,10 +98,6 @@ export const postCategory = text => async function(dispatch) {
 };
 
 export const deleteCategory = id => async function(dispatch) {
-
-    console.log("Are we in here!?")
-    console.log(id)
-
     if (id === "") return;
     try {
         const response = await Auth.fetch(`${API_URL}/category/delete/`+id, {
@@ -113,6 +110,7 @@ export const deleteCategory = id => async function(dispatch) {
             //dispatch(showAndHideAlert("Login", "You need to login to delete a Category!", "alert"));
         } else {
             await response.json();
+            dispatch(showAndHideAlert("DeleteCategory", "You have deleted ur category", "alert"));
             dispatch(loadCategory());
         }
     } catch (e) {
@@ -122,7 +120,7 @@ export const deleteCategory = id => async function(dispatch) {
 };
 
 export const postBook = (category_id, title, author, category, price, name_seller, email_seller) => async function(dispatch) {
-    //if (text === "") return;
+    if (title === "") return;
     try {
         const response = await Auth.fetch(`${API_URL}/category/books`, {
             method: "POST",
@@ -142,6 +140,7 @@ export const postBook = (category_id, title, author, category, price, name_selle
             await navigate("/login");
         } else {
             await response.json();
+            dispatch(showAndHideAlert("PostBook", "You have posted a new book", "alert"));
             dispatch(loadCategory());
         }
     } catch (e) {
@@ -151,10 +150,7 @@ export const postBook = (category_id, title, author, category, price, name_selle
 };
 
 export const deleteBook = (id, answer_id) => async function(dispatch) {
-    //if (text === "") return;
-
-    console.log("HEJ WORLD")
-
+    if (id === "" || answer_id === "") return;
     try {
         const response = await Auth.fetch(`${API_URL}/category/${id}/books`, {
             method: "DELETE",
@@ -167,6 +163,7 @@ export const deleteBook = (id, answer_id) => async function(dispatch) {
             await navigate("/login");
         } else {
             await response.json();
+            dispatch(showAndHideAlert("DeleteBook", "You have deleted a book", "alert"));
             dispatch(loadCategory());
         }
     } catch (e) {
@@ -175,7 +172,6 @@ export const deleteBook = (id, answer_id) => async function(dispatch) {
     }
 };
 
-//Not implemented yet
 export const createLogin = (username, password, admin) => async function(dispatch) {
     try {
         await Auth.createLogin(username, password, admin);
