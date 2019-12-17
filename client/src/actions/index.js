@@ -152,6 +152,9 @@ export const postBook = (category_id, title, author, category, price, name_selle
 
 export const deleteBook = (id, answer_id) => async function(dispatch) {
     //if (text === "") return;
+
+    console.log("HEJ WORLD")
+
     try {
         const response = await Auth.fetch(`${API_URL}/category/${id}/books`, {
             method: "DELETE",

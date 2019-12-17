@@ -63,12 +63,6 @@ class CategoryDAL {
         return category.save();
     }
 
-    async deleteAnswer(categoryId, bookID) {
-        var ObjectId = require('mongodb').ObjectID;
-        const category = await this.removeBook(categoryId, bookID);
-        return category.save();
-    }
-
     async bootstrap(count = 10) {
         let l = (await this.getCategorySpec()).length;
         console.log("Question collection size:", l);

@@ -31,6 +31,8 @@ module.exports = (dal, io) => {
 
     router.delete('/delete/:id', (req, res) => {
 
+        console.log("R MY MOM IN THIS ROOM")
+
         let msg = "Need to be admin before u can delete";
         if (!req.user.admin) return res.status(401).json({msg});
 
@@ -70,7 +72,7 @@ module.exports = (dal, io) => {
         let msg = "Need to be admin before u can delete";
         if (!req.user.admin) return res.status(401).json({msg});
 
-        dal.deleteBook(req.params.id, req.body.id).then(updatedCategory => res.json(updatedCategory));
+        dal.removeBook(req.params.id, req.body.id).then(updatedCategory => res.json(updatedCategory));
     });
 
     return router;
