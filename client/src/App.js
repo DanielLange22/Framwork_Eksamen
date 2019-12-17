@@ -52,6 +52,16 @@ class App extends Component {
         })
     }
 
+    getBook(id_cat, id_book) {
+        let book;
+        this.props.category.find(function (elm) {
+            if(elm._id === id_cat) {
+                book = elm.books.find(e => e._id === id_book);
+            }
+        })
+        return book;
+    }
+
     render() {
         let notification = <></>;
         if (this.props.notifications.active) {
@@ -102,14 +112,12 @@ class App extends Component {
                             handleDelete={(id) => this.props.deleteCategory(id)}
                             admin={this.props.user.admin}
                             loggedin={this.props.user.username}
-                            //admin={true}
                         />
 
                         <Books path="/category/:id"
                             getCategory={(id) => this.props.category.find(e => e._id === id)}
                             admin={this.props.user.admin}
                             onDeleteBook={(id, id_answer) => this.props.deleteBook(id, id_answer)}
-                            //onPostAnswer={(category_id, title, author, category, price, name_seller, email_seller) => this.props.postBook(category_id, title, author, category, price, name_seller, email_seller)}
                         />
 
                         <PostANewBook path="/post_a_book_for_sale"
@@ -119,7 +127,7 @@ class App extends Component {
                         />
 
                         <Book path="/category/:id_cat/books/:id_book"
-                              getBook={(id_cat, id_book) => this.props.category.find(e => e._id === id_cat).books.find(x => x._id === id_book) }
+                              getBook={(id_cat, id_book) => this.getBook(id_cat, id_book)}
                         />
 
                         <Login path="/login"
