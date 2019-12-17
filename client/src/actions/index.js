@@ -54,7 +54,6 @@ export const logout = _ => async function (dispatch) {
     dispatch(removeUserCredentials());
 };
 
-
 /******************************************************
   Actions for handling category and books.
  ******************************************************/
@@ -85,7 +84,8 @@ export const postCategory = text => async function(dispatch) {
             body: JSON.stringify(newCategory)
         });
         if (response.status === 401) {
-            dispatch(showAndHideAlert("Login", "You need to login to post a Category!", "alert"));
+            let json = await response.json();
+            dispatch(showAndHideAlert("Login", "You need to login to post a Category! " + json.msg !== undefined ? ("And:" + json.msg) : "", "alert"));
         } else {
             await response.json();
             dispatch(loadCategory());
@@ -108,7 +108,9 @@ export const deleteCategory = id => async function(dispatch) {
             //body: JSON.stringify({id: id})
         });
         if (response.status === 401) {
-            dispatch(showAndHideAlert("Login", "You need to login to delete a Category!", "alert"));
+            let json = await response.json();
+            dispatch(showAndHideAlert("Login", "You need to login to delete a Category! " + json.msg !== undefined ? ("And:" + json.msg) : "", "alert"));
+            //dispatch(showAndHideAlert("Login", "You need to login to delete a Category!", "alert"));
         } else {
             await response.json();
             dispatch(loadCategory());
@@ -118,7 +120,7 @@ export const deleteCategory = id => async function(dispatch) {
         console.error(e);
     }
 };
-//category_id, title,author,category,price,name_seller,email_seller
+
 export const postBook = (category_id, title, author, category, price, name_seller, email_seller) => async function(dispatch) {
     //if (text === "") return;
     try {
@@ -157,7 +159,8 @@ export const deleteBook = (id, answer_id) => async function(dispatch) {
         });
 
         if (response.status === 401) {
-            dispatch(showAndHideAlert("Login", "You need to login to delete a book!", "alert"));
+            let json = await response.json();
+            dispatch(showAndHideAlert("Login", "You need to login to delete a Book! " + json.msg !== undefined ? ("And:" + json.msg) : "", "alert"));
             await navigate("/login");
         } else {
             await response.json();

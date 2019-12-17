@@ -2,22 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a52c9f04-6d77-42e5-b842-d37fcc3dc675" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/Book.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/PostANewBook.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/AskQuestion.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/PostCategory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/AuthService.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/AuthService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/CreateLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/CreateLogin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/PostAnswer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Question.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Books.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Questions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Category.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Category.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Category.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/actions/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/reducers/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dal/question_dal.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dal/CategoryDAL.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dal/CategoryDAL.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dal/CategoryDAL.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/dal/user_dal.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dal/user_dal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routers/question_router.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routers/category_router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routers/category_router.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routers/category_router.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/routers/user_router.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routers/user_router.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -141,6 +133,10 @@
       <workItem from="1576527518886" duration="1139000" />
       <workItem from="1576529328057" duration="1793000" />
       <workItem from="1576578875812" duration="1167000" />
+      <workItem from="1576581883321" duration="1792000" />
+      <workItem from="1576590839118" duration="1787000" />
+      <workItem from="1576592671805" duration="1789000" />
+      <workItem from="1576594488278" duration="144000" />
     </task>
     <servers />
   </component>

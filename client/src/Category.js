@@ -17,7 +17,7 @@ export default class Category extends Component {
 
         let linkTo  = this.props.loggedin === "" ? "/login": "/post_a_book_for_sale";
 
-        //ADMIN VIEW
+        //ADMIN VIEW - SKAL RETTES TIL this.props.admin !==
         let postNewCategory = this.props.admin === true ? <div className="container">
             <PostCategory onPostCategory={this.props.onPostCategory}/>
         </div> : [];

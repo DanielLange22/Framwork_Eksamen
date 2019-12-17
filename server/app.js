@@ -23,7 +23,7 @@ let openPaths = [
     '/api/users/authenticate',
     '/api/users/create',
     '/api/users/update',
-    { url: '/api/questions', methods: ['GET']  }  // Open GET questions, but not POST.
+    { url: '/api/category', methods: ['GET']  }  // Open GET questions, but not POST.
 ];
 
 // Validate the user using authentication. checkJwt checks for auth token.
@@ -50,7 +50,7 @@ mongoose.connect(MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(async () => {
         console.log("Database connected");
         //Nedstående er test data
-        //await questionDAL.bootstrap();
+        await categoryDAL.bootstrap();
         await userDAL.bootstrapTestusers();
 
         const server = await app.listen(PORT, () => console.log(`App us running on port: ${PORT}`));

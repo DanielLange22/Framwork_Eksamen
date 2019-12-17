@@ -65,7 +65,7 @@ module.exports = (dal, secret) => {
         if (user) { // If the user is found
             bcrypt.compare(password, user.hash, (err, result) => {
                 if (result) { // If the password matched
-                    const payload = { username: username };
+                    const payload = { username: username, admin: user.admin };
                     const token = jwt.sign(payload, secret, { expiresIn: '1h' });
 
                     res.json({

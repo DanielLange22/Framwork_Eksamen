@@ -12,6 +12,9 @@ module.exports = (dal, io) => {
     });
 
     router.post('/', (req, res) => {
+        let msg = "Need to be admin before u can delete";
+        if (!req.user.admin) return res.status(401).json({msg});
+
         let newCategory = {
             text : req.body.text,
             books : []
@@ -27,6 +30,10 @@ module.exports = (dal, io) => {
     });
 
     router.delete('/delete/:id', (req, res) => {
+
+        let msg = "Need to be admin before u can delete";
+        if (!req.user.admin) return res.status(401).json({msg});
+
         console.log("We r in delete API :D");
         dal.removeCategory(req.params.id).then(() => res.json("Succes"));
         //Socket
@@ -60,6 +67,9 @@ module.exports = (dal, io) => {
     });
 
     router.delete('/:id/books', (req, res) => {
+        let msg = "Need to be admin before u can delete";
+        if (!req.user.admin) return res.status(401).json({msg});
+
         dal.deleteBook(req.params.id, req.body.id).then(updatedCategory => res.json(updatedCategory));
     });
 

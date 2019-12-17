@@ -52,16 +52,6 @@ class App extends Component {
         })
     }
 
-    getBook(id_cat, id_book) {
-        let book;
-        this.props.category.find(function (elm) {
-            if(elm._id === id_cat) {
-                book = elm.books.find(e => e._id === id_book);
-            }
-        })
-        return book;
-    }
-
     render() {
         let notification = <></>;
         if (this.props.notifications.active) {
@@ -129,7 +119,7 @@ class App extends Component {
                         />
 
                         <Book path="/category/:id_cat/books/:id_book"
-                              getBook={(id_cat, id_book) => this.getBook(id_cat, id_book) }
+                              getBook={(id_cat, id_book) => this.props.category.find(e => e._id === id_cat).books.find(x => x._id === id_book) }
                         />
 
                         <Login path="/login"
