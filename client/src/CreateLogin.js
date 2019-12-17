@@ -7,7 +7,8 @@ export default class CreateLogin extends Component {
 
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            admin: false
         }
 
         this.onChangedValue = this.onChangedValue.bind(this);
@@ -16,13 +17,17 @@ export default class CreateLogin extends Component {
 
     handleInput = event => {
         event.preventDefault();
-        this.props.createLogin(this.state.username, this.state.password)
+        this.props.createLogin(this.state.username, this.state.password, this.state.admin)
         navigate("/Login")
     }
 
     onChangedValue = event => {
         this.setState({[event.target.name]: event.target.value});
     };
+
+    onClick = event => {
+        this.setState({admin: event.target.checked});
+    }
 
 //TODO ADD CHECKBOX
     render() {
@@ -43,6 +48,11 @@ export default class CreateLogin extends Component {
                     value={this.state.password}
                     onChange={this.onChangedValue}
                 />
+                <input
+                    type="checkbox"
+                    onClick={this.onClick}
+                    value={!this.state.admin}>
+                </input>
                 <button
                     type="button"
                     onClick={this.handleInput}

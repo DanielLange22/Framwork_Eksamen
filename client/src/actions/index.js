@@ -28,9 +28,10 @@ export const hideAlert = (title, text) => ({
 /******************************************************
   Actions for User credentials and Login / logout
  ******************************************************/
-export const addUserCredentials = (username) => ({
+export const addUserCredentials = (username, admin) => ({
     type: 'ADD_USER_CRED',
-    username: username
+    username: username,
+    admin: admin
 });
 
 export const removeUserCredentials = (username) => ({
@@ -39,8 +40,9 @@ export const removeUserCredentials = (username) => ({
 
 export const login = (username, password) => async function (dispatch) {
     try {
-        await Auth.login(username, password);
-        dispatch(addUserCredentials(username));
+        await Auth.login(username, password).then(json => {
+            dispatch(addUserCredentials(username, json.admin));
+        });
         navigate("/"); // Front page
     } catch(e) {
         dispatch(showAndHideAlert("Login Failed", e.message, "error"));
@@ -56,151 +58,122 @@ export const logout = _ => async function (dispatch) {
 /******************************************************
   Actions for handling questions and answers.
  ******************************************************/
-export const replaceQuestions = questions => ({
-    type: 'ADD_QUESTIONS',
-    questions: questions
+export const replaceCategory = category => ({
+    type: 'UPDATE',
+    category: category
 });
 
 //Evt. Skal der tilføjes således den har en TYPE af REMOVE_QUESTIONS - ELLERS RET OVENSTÅENDE TIL UPDATE SÅ DEN KAN HÅNDTERE BEGGE
 
-export const loadQuestions = _ => async function (dispatch) {
+export const loadCategory = _ => async function (dispatch) {
     try {
-        const url = `${API_URL}/questions`;
+        const url = `${API_URL}/category`;
         const response = await Auth.fetch(url);
         const data = await response.json();
-        dispatch(replaceQuestions(data));
+        dispatch(replaceCategory(data));
     } catch (e) {
         console.error(e);
-        dispatch(showAndHideAlert("Error loading questions", e.message, "error"));
+        dispatch(showAndHideAlert("Error loading category", e.message, "error"));
     }
 };
 
-export const postQuestion = text => async function(dispatch) {
+export const postCategory = text => async function(dispatch) {
     if (text === "") return;
     try {
         const newQuestion = { text: text };
-        const response = await Auth.fetch(`${API_URL}/questions`, {
+        const response = await Auth.fetch(`${API_URL}/category`, {
             method: "POST",
             body: JSON.stringify(newQuestion)
         });
         if (response.status === 401) {
-            dispatch(showAndHideAlert("Login", "You need to login to post questions!", "alert"));
+            dispatch(showAndHideAlert("Login", "You need to login to post a Category!", "alert"));
         } else {
             await response.json();
-            dispatch(loadQuestions());
+            dispatch(loadCategory());
         }
     } catch (e) {
-        dispatch(showAndHideAlert("Send question error", e.message, "error"));
+        dispatch(showAndHideAlert("Send category error", e.message, "error"));
         console.error(e);
     }
 };
 
-export const deleteQuestion = id => async function(dispatch) {
+export const deleteCategory = id => async function(dispatch) {
 
     console.log("Are we in here!?")
     console.log(id)
 
     if (id === "") return;
     try {
-        const response = await Auth.fetch(`${API_URL}/questions/delete/`+id, {
+        const response = await Auth.fetch(`${API_URL}/category/delete/`+id, {
             method: "DELETE",
             //body: JSON.stringify({id: id})
         });
         if (response.status === 401) {
-            dispatch(showAndHideAlert("Login", "You need to login to post questions!", "alert"));
+            dispatch(showAndHideAlert("Login", "You need to login to delete a Category!", "alert"));
         } else {
             await response.json();
-            dispatch(loadQuestions());
+            dispatch(loadCategory());
         }
     } catch (e) {
-        dispatch(showAndHideAlert("Delete question error", e.message, "error"));
+        dispatch(showAndHideAlert("Delete category error", e.message, "error"));
         console.error(e);
     }
 };
-
-export const postAnswer = (id, text) => async function(dispatch) {
-    if (text === "") return;
+//category_id, title,author,category,price,name_seller,email_seller
+export const postBook = (category_id, title, author, category, price, name_seller, email_seller) => async function(dispatch) {
+    //if (text === "") return;
     try {
-        const response = await Auth.fetch(`${API_URL}/questions/${id}/answers`, {
+        const response = await Auth.fetch(`${API_URL}/category/books`, {
             method: "POST",
-            body: JSON.stringify({text: text})
+            body: JSON.stringify({
+                id: category_id,
+                title: title,
+                author: author,
+                category: category,
+                price: price,
+                name_seller: name_seller,
+                email_seller: email_seller
+            })
         });
 
         if (response.status === 401) {
-            dispatch(showAndHideAlert("Login", "You need to login to post answers!", "alert"));
+            dispatch(showAndHideAlert("Login", "You need to login to post a book!", "alert"));
             await navigate("/login");
         } else {
             await response.json();
-            dispatch(loadQuestions());
+            dispatch(loadCategory());
         }
     } catch (e) {
-        dispatch(showAndHideAlert("Give answer error", e.message, "error"));
+        dispatch(showAndHideAlert("Give book error", e.message, "error"));
         console.error(e);
     }
 };
 
-export const deleteAnswer = (id, answer_id) => async function(dispatch) {
+export const deleteBook = (id, answer_id) => async function(dispatch) {
     //if (text === "") return;
     try {
-        const response = await Auth.fetch(`${API_URL}/questions/${id}/answers`, {
+        const response = await Auth.fetch(`${API_URL}/category/${id}/books`, {
             method: "DELETE",
             body: JSON.stringify({id: answer_id})
         });
 
         if (response.status === 401) {
-            dispatch(showAndHideAlert("Login", "You need to login to delete answers!", "alert"));
+            dispatch(showAndHideAlert("Login", "You need to login to delete a book!", "alert"));
             await navigate("/login");
         } else {
             await response.json();
-            dispatch(loadQuestions());
+            dispatch(loadCategory());
         }
     } catch (e) {
-        dispatch(showAndHideAlert("Give answer error", e.message, "error"));
-        console.error(e);
-    }
-};
-
-export const voteAnswerUp = (questionId, answerId) => async function(dispatch) {
-    try {
-        const response = await Auth.fetch(`${API_URL}/questions/${questionId}/answers/${answerId}/vote`, {
-            method: "PUT",
-            body: JSON.stringify({voteCount: 1})
-        });
-        if (response.status === 401) {
-            dispatch(showAndHideAlert("Login", "You need to login to vote!", "alert"));
-            await navigate("/login");
-        }
-        await response.json();
-        dispatch(loadQuestions());
-    } catch (e) {
-        dispatch(showAndHideAlert("Vote error", e.message, "error"));
+        dispatch(showAndHideAlert("Give book error", e.message, "error"));
         console.error(e);
     }
 };
 
 //Not implemented yet
-export const voteAnswerDown = (questionId, answerId) => async function(dispatch) {
+export const createLogin = (username, password, admin) => async function(dispatch) {
     try {
-        const response = await Auth.fetch(`${API_URL}/questions/${questionId}/answers/${answerId}/voteDown`, {
-            method: "PUT",
-            body: JSON.stringify({voteCount: -1})
-        });
-        if (response.status === 401) {
-            dispatch(showAndHideAlert("Login", "You need to login to vote!", "alert"));
-            await navigate("/login");
-        }
-        await response.json();
-        dispatch(loadQuestions());
-    } catch (e) {
-        dispatch(showAndHideAlert("Vote error", e.message, "error"));
-        console.error(e);
-    }
-};
-
-//Not implemented yet
-export const createLogin = (username, password) => async function(dispatch) {
-    try {
-        await Auth.createLogin(username, password);
+        await Auth.createLogin(username, password, admin);
         dispatch(showAndHideAlert("Create", "Succes", "alert"));
         navigate("/"); // Front page
     } catch(e) {

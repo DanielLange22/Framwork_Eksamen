@@ -8,6 +8,7 @@ module.exports = (dal, secret) => {
     router.post('/create', async (req, res) => {
         const username = req.body.username;
         const password = req.body.password;
+        const admin = req.body.admin;
 
         if (!username || !password) {
             let msg = "Username or password missing!";
@@ -16,7 +17,7 @@ module.exports = (dal, secret) => {
             return;
         }
 
-        const user = { "username": username, "password": password};
+        const user = { "username": username, "password": password, "admin": admin};
         bcrypt.hash(user.password, 10, async (err, hash) => {
             user.hash = hash; // The hash has been made, and is stored on the user object.
             delete user.password; // The clear text password is no longer needed
@@ -69,6 +70,7 @@ module.exports = (dal, secret) => {
 
                     res.json({
                         msg: `User '${username}' authenticated successfully`,
+                        admin: user.admin,
                         token: token
                     });
                 }

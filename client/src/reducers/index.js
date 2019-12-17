@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-function questions(state = [], action) {
+function category(state = [], action) {
     switch (action.type) {
-        case 'ADD_QUESTIONS': {
-            return [...action.questions];
+        case 'UPDATE': {
+            return [...action.category];
         }
         default:
             return state
@@ -13,10 +13,10 @@ function questions(state = [], action) {
 function user(state = {}, action) {
     switch (action.type) {
         case 'ADD_USER_CRED': {
-            return { username: action.username };
+            return { username: action.username, admin: action.admin };
         }
         case 'REMOVE_USER_CRED': {
-            return { username: "" };
+            return { username: "", admin: false };
         }
         default:
             return state
@@ -44,5 +44,5 @@ function notifications(state = {}, action) {
 }
 
 export default combineReducers({
-    questions, user, notifications
+    category, user, notifications
 })

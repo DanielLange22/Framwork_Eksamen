@@ -41,7 +41,7 @@ app.use((err, req, res, next) => {
 });
 
 /**** Database access layers *****/
-const questionDAL = require('./dal/question_dal')(mongoose);
+const categoryDAL = require('./dal/CategoryDAL')(mongoose);
 const userDAL = require('./dal/user_dal')(mongoose);
 
 /**** Start ****/
@@ -49,7 +49,8 @@ const userDAL = require('./dal/user_dal')(mongoose);
 mongoose.connect(MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(async () => {
         console.log("Database connected");
-        await questionDAL.bootstrap();
+        //Nedstående er test data
+        //await questionDAL.bootstrap();
         await userDAL.bootstrapTestusers();
 
         const server = await app.listen(PORT, () => console.log(`App us running on port: ${PORT}`));
@@ -68,8 +69,8 @@ mongoose.connect(MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true})
         const usersRouter = require('./routers/user_router')(userDAL, secret);
         app.use('/api/users', usersRouter);
 
-        const questionRouter = require('./routers/question_router')(questionDAL, io);
-        app.use('/api/questions', questionRouter);
+        const categoryRouter = require('./routers/category_router')(categoryDAL, io);
+        app.use('/api/category', categoryRouter);
 
         app.get('*', (req, res) =>
             res.sendFile(path.resolve('..', 'client', 'build', 'index.html'))

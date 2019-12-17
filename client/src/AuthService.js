@@ -21,19 +21,22 @@ class AuthService {
         if (res.status === 404) {
             throw Error(json.msg);
         }
+
+        this.setAdmin(json.admin);
         this.setToken(json.token);
         this.setUsername(username);
         return json;
     }
 
     API_URL = process.env.REACT_APP_API_URL;
-    async createLogin(username, password) {
+    async createLogin(username, password, admin) {
         try {
             await this.fetch(`${this.API_URL}/users/create`, {
                 method: 'POST',
                 body: JSON.stringify({
                     username: username,
                     password: password,
+                    admin: admin
                 }),
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
@@ -85,6 +88,10 @@ class AuthService {
         localStorage.setItem("username", username);
     }
 
+    setAdmin(admin) {
+        localStorage.setItem("admin", admin);
+    }
+
     setUsername(username) {
         localStorage.setItem("username", username);
     }
@@ -100,6 +107,7 @@ class AuthService {
     logout() {
         localStorage.removeItem(this.TOKEN_KEY);
         localStorage.removeItem("username");
+        localStorage.removeItem("admin");
     }
 
     fetch(url, options) {

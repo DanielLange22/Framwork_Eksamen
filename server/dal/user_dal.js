@@ -5,6 +5,7 @@ class UserDAL {
         this.mongoose = mongoose;
         const userSchema = new mongoose.Schema({
             username: String,
+            admin: Boolean,
             hash: String
         });
         this.userModel = mongoose.model('user', userSchema);
@@ -15,7 +16,7 @@ class UserDAL {
         return newUser.save();
     }
 
-    async updateOne(username, hashP) {
+    async updateOne(username, admin, hashP) {
         await this.userModel.updateOne(
             {"username" : username},
             {$set: {hash: hashP}}

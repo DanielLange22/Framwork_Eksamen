@@ -2,13 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a52c9f04-6d77-42e5-b842-d37fcc3dc675" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/client/src/Book.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/PostANewBook.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Question.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Question.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/AskQuestion.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/PostCategory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/AuthService.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/AuthService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/CreateLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/CreateLogin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/PostAnswer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Question.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Books.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Questions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Category.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/actions/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/reducers/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dal/question_dal.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dal/question_dal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routers/question_router.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routers/question_router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dal/question_dal.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dal/CategoryDAL.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dal/user_dal.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dal/user_dal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routers/question_router.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routers/category_router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routers/user_router.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routers/user_router.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,13 +61,13 @@
     </option>
   </component>
   <component name="RunManager" selected="Node.js.app.js">
+    <configuration name="CategoryDAL.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/server/dal/CategoryDAL.js" working-dir="$PROJECT_DIR$/server/dal">
+      <method v="2" />
+    </configuration>
     <configuration name="app.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="app.js" working-dir="$PROJECT_DIR$/server">
       <envs>
         <env name="SECRET" value="lol" />
       </envs>
-      <method v="2" />
-    </configuration>
-    <configuration name="question_dal.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/server/dal/question_dal.js" working-dir="$PROJECT_DIR$/server/dal">
       <method v="2" />
     </configuration>
     <configuration name="user_router.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/server/routers/user_router.js" working-dir="$PROJECT_DIR$/server/routers">
@@ -66,7 +76,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Node.js.app.js" />
-        <item itemvalue="Node.js.question_dal.js" />
+        <item itemvalue="Node.js.CategoryDAL.js" />
         <item itemvalue="Node.js.user_router.js" />
       </list>
     </recent_temporary>
@@ -104,7 +114,33 @@
       <workItem from="1576412838762" duration="631000" />
       <workItem from="1576416765031" duration="1538000" />
       <workItem from="1576418613047" duration="1729000" />
-      <workItem from="1576420427788" duration="1634000" />
+      <workItem from="1576420427788" duration="1789000" />
+      <workItem from="1576422273127" duration="250000" />
+      <workItem from="1576422564715" duration="675000" />
+      <workItem from="1576480749433" duration="1903000" />
+      <workItem from="1576482844640" duration="1792000" />
+      <workItem from="1576484659360" duration="1790000" />
+      <workItem from="1576486468574" duration="1792000" />
+      <workItem from="1576488281662" duration="1576000" />
+      <workItem from="1576490094422" duration="1792000" />
+      <workItem from="1576491903256" duration="2138000" />
+      <workItem from="1576494396423" duration="1792000" />
+      <workItem from="1576496206031" duration="1792000" />
+      <workItem from="1576498022895" duration="1797000" />
+      <workItem from="1576499972589" duration="1534000" />
+      <workItem from="1576501781732" duration="1787000" />
+      <workItem from="1576503598028" duration="1788000" />
+      <workItem from="1576505416210" duration="1788000" />
+      <workItem from="1576507227176" duration="1571000" />
+      <workItem from="1576509041105" duration="1774000" />
+      <workItem from="1576510996727" duration="1792000" />
+      <workItem from="1576512808459" duration="1787000" />
+      <workItem from="1576514624898" duration="1711000" />
+      <workItem from="1576517787241" duration="1794000" />
+      <workItem from="1576523958104" duration="1485000" />
+      <workItem from="1576527518886" duration="1139000" />
+      <workItem from="1576529328057" duration="1793000" />
+      <workItem from="1576578875812" duration="1167000" />
     </task>
     <servers />
   </component>
