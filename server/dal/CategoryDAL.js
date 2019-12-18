@@ -6,7 +6,7 @@ class CategoryDAL {
             books: [{
                 title: String,
                 author: String,
-                category: String, //Skal den evt bare fjernes? Grundet den er nestet...
+                category: String,
                 price: String,
                 name_seller: String,
                 email_seller: String
@@ -38,7 +38,6 @@ class CategoryDAL {
         return category.save();
     }
 
-    //Er dette korrekt?
     async removeCategory(id) {
         await this.categoryModel.deleteOne({_id: id});
     }
@@ -56,7 +55,6 @@ class CategoryDAL {
         return category_book.save();
     }
 
-    //EN AF DE 2 NEDSTÅENDE ER REDUDANTE
     async removeBook(categoryId, bookID) {
         const category = await this.getCategory(categoryId);
         category.books.pull({_id: bookID});

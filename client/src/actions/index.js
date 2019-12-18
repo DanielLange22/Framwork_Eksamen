@@ -105,7 +105,6 @@ export const deleteCategory = id => async function(dispatch) {
     try {
         const response = await Auth.fetch(`${API_URL}/category/delete/`+id, {
             method: "DELETE",
-            //body: JSON.stringify({id: id})
         });
         if (response.status === 401) {
             let json = await response.json();

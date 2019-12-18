@@ -31,7 +31,6 @@ module.exports = (dal, io) => {
         //Socket
         console.log("Server is sending out message")
         io.of('/api/Socket').emit('new-data-category-list', {
-            //Evt. bare send dataen i stedet for en besked :)
             msg: 'New data',
         });
     });
@@ -45,7 +44,6 @@ module.exports = (dal, io) => {
         //Socket
         console.log("Server is sending out message")
         io.of('/api/Socket').emit('new-data-category-list', {
-            //Evt. bare send dataen i stedet for en besked :)
             msg: 'New data',
         });
     });

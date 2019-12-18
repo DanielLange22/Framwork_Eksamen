@@ -53,8 +53,6 @@ class UserDAL {
         if (l !== 0) return;
 
         const users = [
-            // These are just some test users with passwords.
-            // The passwords are in clear text for testing purposes. (don't do this in production)
             { username: "krdo", password: '123', admin: false},
             { username: "tosk", password: 'password', admin: true},
             { username: "mvkh", password: 'l33th0xor', admin: false},
@@ -63,8 +61,8 @@ class UserDAL {
         let promises = [];
         users.forEach(user => {
             bcrypt.hash(user.password, 10, (err, hash) => {
-                user.hash = hash; // The hash has been made, and is stored on the user object.
-                delete user.password; // The clear text password is no longer needed
+                user.hash = hash;
+                delete user.password;
 
                 let newUser = new this.userModel(user);
                 promises.push(newUser.save());

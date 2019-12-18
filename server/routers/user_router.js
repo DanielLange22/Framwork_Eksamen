@@ -19,15 +19,14 @@ module.exports = (dal, secret) => {
 
         const user = { "username": username, "password": password, "admin": admin};
         bcrypt.hash(user.password, 10, async (err, hash) => {
-            user.hash = hash; // The hash has been made, and is stored on the user object.
-            delete user.password; // The clear text password is no longer needed
+            user.hash = hash;
+            delete user.password;
             const newUser = await dal.createUser(user);
             res.json({msg: "New user created!", username: newUser.username});
         });
     });
 
     router.put('/update', async (req, res) => {
-        // TODO: Implement user update (change password, etc). - Evt opdater så der ikke rettes direkte
         const username = req.body.username;
         const password = req.body.password;
 
@@ -48,7 +47,6 @@ module.exports = (dal, secret) => {
         res.status(200).json({msg: "PUT new user succes"});
     });
 
-    // This route takes a username and a password and create an auth token
     router.post('/authenticate', async (req, res) => {
         const username = req.body.username;
         const password = req.body.password;
@@ -60,9 +58,8 @@ module.exports = (dal, secret) => {
             return;
         }
 
-        //const user = users.find((user) => user.username === username);
         const user = await dal.getUser(username);
-        if (user) { // If the user is found
+        if (user) {
             bcrypt.compare(password, user.hash, (err, result) => {
                 if (result) { // If the password matched
                     const payload = { username: username, admin: user.admin };

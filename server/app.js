@@ -9,34 +9,30 @@ const checkJwt = require('express-jwt'); // Check for access tokens automaticall
 /**** Configuration ****/
 const app = express();
 const PORT = process.env.PORT || 8080;
-//const MONGO_URL = process.env.MONGO_URL;
-const MONGO_URL = process.env.MONGO_URL || 'mongodb+srv://BrugerEt:dani6602@cluster0-yrtpu.mongodb.net/test?retryWrites=true&w=majority';
+const MONGO_URL = process.env.MONGO_URL;
 
 app.use(express.static(path.resolve('..', 'client', 'build')));
 app.use(cors());
-app.use(bodyParser.json()); // Parse JSON from the request body
-app.use(morgan('combined')); // Log all requests to the console
+app.use(bodyParser.json());
+app.use(morgan('combined'));
 
-// Open paths that does not need login. Any route not included here is protected!
 let openPaths = [
-    /^(?!\/api).*/gim, // Open everything that doesn't begin with '/api'
+    /^(?!\/api).*/gim,
     '/api/users/authenticate',
     '/api/users/create',
     '/api/users/update',
-    { url: '/api/category', methods: ['GET']  }  // Open GET questions, but not POST.
+    { url: '/api/category', methods: ['GET']  }
 ];
 
-// Validate the user using authentication. checkJwt checks for auth token.
 const secret = process.env.SECRET || "the cake is a lie";
 if (!process.env.SECRET) console.error("Warning: SECRET is undefined.");
 app.use(checkJwt({ secret: secret }).unless({ path : openPaths }));
 
-// This middleware checks the result of checkJwt
 app.use((err, req, res, next) => {
-    if (err.name === 'UnauthorizedError') { // If the user didn't authorize correctly
-        res.status(401).json({ error: err.message }); // Return 401 with error message.
+    if (err.name === 'UnauthorizedError') {
+        res.status(401).json({ error: err.message });
     } else {
-        next(); // If no errors, send request to next middleware or route handler
+        next();
     }
 });
 
@@ -45,7 +41,6 @@ const categoryDAL = require('./dal/CategoryDAL')(mongoose);
 const userDAL = require('./dal/user_dal')(mongoose);
 
 /**** Start ****/
-
 mongoose.connect(MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(async () => {
         console.log("Database connected");
@@ -55,6 +50,7 @@ mongoose.connect(MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true})
 
         const server = await app.listen(PORT, () => console.log(`App us running on port: ${PORT}`));
         const io = require('socket.io').listen(server);
+
         /**** Socket.io event handlers ****/
         io.of('/api/Socket').on('connection', function (socket) {
             socket.on('hello', function (from, msg) {
