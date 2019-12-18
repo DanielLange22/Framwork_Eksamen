@@ -12,7 +12,7 @@ module.exports = (dal, io) => {
     });
 
     router.post('/', (req, res) => {
-        let msg = "Need to be admin before u can delete";
+        let msg = "Need to be admin before u can post";
         if (!req.user.admin) return res.status(401).json({msg});
 
         if (!req.body.text) {
@@ -49,7 +49,7 @@ module.exports = (dal, io) => {
     });
 
     router.post('/books', async (req, res) => {
-        if (!req.body.id || !req.body.title || !req.body.author || !req.body.price || !req.body.name_seller || !req.body.email_seller) {
+        if ((!req.body.id || !req.body.title || !req.body.author || !req.body.price || !req.body.name_seller || !req.body.email_seller) || req.body.category === "0") {
             let msg = "Information missing for post book";
             console.error(msg);
             res.status(400).json({msg: msg});
