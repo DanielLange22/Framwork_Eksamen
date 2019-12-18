@@ -86,6 +86,9 @@ export const postCategory = text => async function(dispatch) {
         if (response.status === 401) {
             let json = await response.json();
             dispatch(showAndHideAlert("Login", "You need to login to post a Category! " + json.msg !== undefined ? ("And:" + json.msg) : "", "alert"));
+        } else if(response.status === 400) {
+            let json = await response.json();
+            dispatch(showAndHideAlert("Information", json.msg, "alert"));
         } else {
             await response.json();
             dispatch(showAndHideAlert("PostCategory", "You have posted a new category", "alert"));
@@ -107,7 +110,6 @@ export const deleteCategory = id => async function(dispatch) {
         if (response.status === 401) {
             let json = await response.json();
             dispatch(showAndHideAlert("Login", "You need to login to delete a Category! " + json.msg !== undefined ? ("And:" + json.msg) : "", "alert"));
-            //dispatch(showAndHideAlert("Login", "You need to login to delete a Category!", "alert"));
         } else {
             await response.json();
             dispatch(showAndHideAlert("DeleteCategory", "You have deleted ur category", "alert"));
@@ -138,10 +140,14 @@ export const postBook = (category_id, title, author, category, price, name_selle
         if (response.status === 401) {
             dispatch(showAndHideAlert("Login", "You need to login to post a book!", "alert"));
             await navigate("/login");
+        } else if(response.status === 400) {
+            let json = await response.json();
+            dispatch(showAndHideAlert("Information", json.msg, "alert"));
         } else {
             await response.json();
             dispatch(showAndHideAlert("PostBook", "You have posted a new book", "alert"));
             dispatch(loadCategory());
+            await navigate("/");
         }
     } catch (e) {
         dispatch(showAndHideAlert("Give book error", e.message, "error"));

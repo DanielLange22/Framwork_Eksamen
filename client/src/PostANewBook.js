@@ -22,7 +22,7 @@ export default class PostANewBook extends Component {
 
     handleInput = event => {
         event.preventDefault();
-        this.props.onPostAnswer(
+        this.props.onPostBook(
             this.state.category,
             this.state.title,
             this.state.author,
@@ -42,7 +42,6 @@ export default class PostANewBook extends Component {
             email_seller: "",
         });
 
-        navigate("/")
     }
 
     onChangedValue = event => {

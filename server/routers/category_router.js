@@ -15,6 +15,13 @@ module.exports = (dal, io) => {
         let msg = "Need to be admin before u can delete";
         if (!req.user.admin) return res.status(401).json({msg});
 
+        if (!req.body.text) {
+            let msg = "Information missing for post category";
+            console.error(msg);
+            res.status(400).json({msg: msg});
+            return;
+        }
+
         let newCategory = {
             text : req.body.text,
             books : []
@@ -30,14 +37,11 @@ module.exports = (dal, io) => {
     });
 
     router.delete('/delete/:id', (req, res) => {
-
-        console.log("R MY MOM IN THIS ROOM")
-
         let msg = "Need to be admin before u can delete";
         if (!req.user.admin) return res.status(401).json({msg});
 
-        console.log("We r in delete API :D");
         dal.removeCategory(req.params.id).then(() => res.json("Succes"));
+
         //Socket
         console.log("Server is sending out message")
         io.of('/api/Socket').emit('new-data-category-list', {
@@ -46,14 +50,14 @@ module.exports = (dal, io) => {
         });
     });
 
-    //Old
-    /*router.post('/:id/answers', (req, res) => {
-        dal.addAnswer(req.params.id, req.body.text).then(updatedQuestion => res.json(updatedQuestion));
-    });*/
-
-    //New
-    //Bliver rettet til uden ID
     router.post('/books', async (req, res) => {
+        if (!req.body.id || !req.body.title || !req.body.author || !req.body.price || !req.body.name_seller || !req.body.email_seller) {
+            let msg = "Information missing for post book";
+            console.error(msg);
+            res.status(400).json({msg: msg});
+            return;
+        }
+
         let categoryT;
         await dal.getCategory(req.body.category).then(cateorgy => categoryT = cateorgy);
 

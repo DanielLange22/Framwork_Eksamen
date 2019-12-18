@@ -123,7 +123,7 @@ class App extends Component {
                         <PostANewBook path="/post_a_book_for_sale"
                                category={this.props.category}
                                infoMsg={this.state.infoMsg}
-                               onPostAnswer={(category_id, title, author, category, price, name_seller, email_seller) => this.props.postBook(category_id, title, author, category, price, name_seller, email_seller)}
+                               onPostBook={(category_id, title, author, category, price, name_seller, email_seller) => this.props.postBook(category_id, title, author, category, price, name_seller, email_seller)}
                                loggedin={this.props.user.username}
                         />
 
