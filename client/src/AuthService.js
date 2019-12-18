@@ -92,6 +92,10 @@ class AuthService {
         localStorage.setItem("admin", admin);
     }
 
+    getAdmin() {
+        return localStorage.getItem("admin");
+    }
+
     setUsername(username) {
         localStorage.setItem("username", username);
     }

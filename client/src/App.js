@@ -14,7 +14,7 @@ import {
     logout,
     loadCategory,
     hideAlert,
-    createLogin, updateLogin, postCategory, deleteCategory, postBook, deleteBook
+    createLogin, updateLogin, postCategory, deleteCategory, postBook, deleteBook, loadUser
 } from './actions';
 import CreateLogin from "./CreateLogin";
 import UpdatePassword from "./UpdatePassword";
@@ -31,9 +31,9 @@ class App extends Component {
         };
     }
 
-    //Socket = process.env.REACT_APP_API_URL;
     async componentDidMount() {
-        this.props.loadCategory();
+        await this.props.loadCategory();
+        await this.props.loadUser();
 
         const socket = io(`${this.props.Socket}/Socket`)
         await socket.on('connect', () => {
@@ -179,7 +179,8 @@ const mapDispatchToProps = dispatch => ({
     logout: _ => dispatch(logout()),
     createLogin: (username, password, admin) => dispatch(createLogin(username, password, admin)),
     updatePassword: (username, password) => dispatch(updateLogin(username, password)),
-    hideAlert: _ => dispatch(hideAlert())
+    hideAlert: _ => dispatch(hideAlert()),
+    loadUser: _ => dispatch(loadUser())
 });
 
 export default connect(

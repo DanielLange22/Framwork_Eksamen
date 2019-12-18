@@ -21,11 +21,6 @@ class UserDAL {
             {"username" : username},
             {$set: {hash: hashP}}
         )
-        /*
-         await dal.updateOne(
-            {"username" : username},
-            {$set: {hash: hashP}}
-        )*/
     }
 
     async getUser(username) {
