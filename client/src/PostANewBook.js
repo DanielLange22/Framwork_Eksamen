@@ -20,6 +20,13 @@ export default class PostANewBook extends Component {
         this.selectSubmit = this.selectSubmit.bind(this);
     }
 
+    async componentDidMount() {
+        await this.props.loadUser();
+        if(!this.props.loggedin) {
+            navigate("/login")
+        }
+    }
+
     handleInput = event => {
         event.preventDefault();
         this.props.onPostBook(
@@ -55,10 +62,6 @@ export default class PostANewBook extends Component {
     };
 
     render() {
-        if(!this.props.loggedin) {
-            navigate("/login")
-        }
-
         return (
             <form>
                 <h1>Create A New Book For Sale</h1>
