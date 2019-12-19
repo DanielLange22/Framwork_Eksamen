@@ -79,7 +79,6 @@ export const loadCategory = _ => async function (dispatch) {
 //Til at loade ved refresh af side
 export const loadUser = _ => async function (dispatch) {
     try {
-        console.log(Auth.getAdmin())
         if(Auth.getUsername() && Auth.getToken()) {
             dispatch(addUserCredentials(Auth.getUsername(), Auth.getAdmin() === 'true'));
         }
@@ -89,7 +88,10 @@ export const loadUser = _ => async function (dispatch) {
 };
 
 export const postCategory = text => async function(dispatch) {
-    if (text === "") return;
+    if (text === "") {
+        dispatch(showAndHideAlert("Information", "Missing text", "alert"));
+        return
+    }
     try {
         const newCategory = { text: text };
         const response = await Auth.fetch(`${API_URL}/category`, {

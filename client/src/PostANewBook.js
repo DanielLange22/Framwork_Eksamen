@@ -22,6 +22,7 @@ export default class PostANewBook extends Component {
 
     async componentDidMount() {
         await this.props.loadUser();
+
         if(!this.props.loggedin) {
             navigate("/login")
         }
