@@ -42,8 +42,8 @@ class CategoryDAL {
         await this.categoryModel.deleteOne({_id: id});
     }
 
-    async addBook(questionId, title, author, category, price, name_seller, email_seller) {
-        const category_book = await this.getCategory(questionId);
+    async addBook(categoryId, title, author, category, price, name_seller, email_seller) {
+        const category_book = await this.getCategory(categoryId);
         category_book.books.push({
             title: title,
             author: author,
@@ -63,7 +63,7 @@ class CategoryDAL {
 
     async bootstrap(count = 10) {
         let l = (await this.getCategorySpec()).length;
-        console.log("Question collection size:", l);
+        console.log("Category collection size:", l);
 
         if (l === 0) {
             let promises = [];

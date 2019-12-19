@@ -6,10 +6,10 @@ export default class Books extends Component {
     render() {
         const category = this.props.getCategory(this.props.id);
 
-        let answerContent = <p>loading...</p>;
+        let bookContent = <p>loading...</p>;
 
         if (category) {
-            answerContent = category.books ?
+            bookContent = category.books ?
                 category.books.map(
                     ans =>
                         <li key={ans._id}>
@@ -35,7 +35,7 @@ export default class Books extends Component {
 
                 <section className="section has-background-white-bis">
                     <ul>
-                        {answerContent}
+                        {bookContent}
                     </ul>
                 </section>
 

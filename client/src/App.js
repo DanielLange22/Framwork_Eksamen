@@ -117,7 +117,7 @@ class App extends Component {
                         <Books path="/category/:id"
                             getCategory={(id) => this.props.category.find(e => e._id === id)}
                             admin={this.props.user.admin}
-                            onDeleteBook={(id, id_answer) => this.props.deleteBook(id, id_answer)}
+                            onDeleteBook={(id, id_book) => this.props.deleteBook(id, id_book)}
                         />
 
                         <PostANewBook path="/post_a_book_for_sale"
@@ -175,7 +175,7 @@ const mapDispatchToProps = dispatch => ({
     postCategory: text => dispatch(postCategory(text)),
     deleteCategory: (id) => dispatch(deleteCategory(id)),
     postBook: (category_id, title, author, category, price, name_seller, email_seller) => dispatch(postBook(category_id, title, author, category, price, name_seller, email_seller)),
-    deleteBook: (id, answer_id) => dispatch(deleteBook(id, answer_id)),
+    deleteBook: (id, id_book) => dispatch(deleteBook(id, id_book)),
     login: (username, password) => dispatch(login(username, password)),
     logout: _ => dispatch(logout()),
     createLogin: (username, password, admin) => dispatch(createLogin(username, password, admin)),

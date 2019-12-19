@@ -40,7 +40,6 @@ export default class PostANewBook extends Component {
         );
 
         this.setState({
-            //answer: "",
             title: "",
             author: "",
             category: "",
@@ -48,14 +47,12 @@ export default class PostANewBook extends Component {
             name_seller: "",
             email_seller: "",
         });
-
     }
 
     onChangedValue = event => {
         this.setState({[event.target.name]: event.target.value});
     };
 
-    //Check if it works....
     selectSubmit = e => {
         const { value } = e.target;
         this.setState({category: value})

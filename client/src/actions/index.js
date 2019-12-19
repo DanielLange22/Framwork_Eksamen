@@ -166,12 +166,12 @@ export const postBook = (category_id, title, author, category, price, name_selle
     }
 };
 
-export const deleteBook = (id, answer_id) => async function(dispatch) {
-    if (id === "" || answer_id === "") return;
+export const deleteBook = (id, book_id) => async function(dispatch) {
+    if (id === "" || book_id === "") return;
     try {
         const response = await Auth.fetch(`${API_URL}/category/${id}/books`, {
             method: "DELETE",
-            body: JSON.stringify({id: answer_id})
+            body: JSON.stringify({id: book_id})
         });
 
         if (response.status === 401) {
