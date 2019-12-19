@@ -52,6 +52,7 @@ export const login = (username, password) => async function (dispatch) {
 export const logout = _ => async function (dispatch) {
     Auth.logout();
     dispatch(removeUserCredentials());
+    navigate("/") // Front page
 };
 
 /******************************************************
